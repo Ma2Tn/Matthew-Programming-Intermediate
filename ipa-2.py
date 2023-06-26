@@ -37,7 +37,35 @@ def shift_letter(letter, shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    def shift_letter(letter, shift):
+
+    def shift_letter(letter, shift):
+
+    dictionary = {' ':'-5','A':'1','B':'2','C':'3','D':'4','E':'5','F':'6','G':'7','H':'8','I':'9','J':'10','K':'11','L':'12','M':'13','N':'14','O':'15','P':'16','Q':'17','R':'18','X':'19','T':'20','U':'21','V':'22','W':'23','X':'24','Y':'25','Z':'26'}
+    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
+    space = dictionary[letter]
+    if int(space)<0:
+        print(' ')
+    elif int(dictionary[letter])+ int(shift) <= 26:
+        
+        numero = dictionary[letter]
+        int(shift)
+        shifted= int(numero) + shift
+        shifted = shifted - 1
+        int(shifted)
+        print(letterlist[shifted])
+    elif int(dictionary[letter])+ int(shift) > 26:
+        
+        number = (int(dictionary[letter])+ int(shift))%26
+        number= number - 1
+        return(str(letterlist[number]))
+
+        
+    
+    
+    
+shift_letter('A', 2)
+    
 
 def caesar_cipher(message, shift):
     '''Caesar Cipher.
@@ -59,7 +87,35 @@ def caesar_cipher(message, shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    dictionary = {' ':'-5','A':'1','B':'2','C':'3','D':'4','E':'5','F':'6','G':'7','H':'8','I':'9','J':'10','K':'11','L':'12','M':'13','N':'14','O':'15','P':'16','Q':'17','R':'18','X':'19','T':'20','U':'21','V':'22','W':'23','X':'24','Y':'25','Z':'26'}
+    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
+    encrypted_message= ""
+    
+    length = int(len(message))
+
+    while length> 0:
+        length -= 1
+        pos= message[length]
+        number = dictionary[pos]
+        
+        space = dictionary[pos]
+        if int(space)<0:
+            encrypted_message=  " " + encrypted_message
+
+        elif int(dictionary[pos]) + int(shift) <= 26:
+            int(shift)
+            shifted= int(number) + shift
+            shifted = shifted - 1
+            int(shifted)
+            encrypted_message=  letterlist[shifted] + encrypted_message
+        else:
+            numero = (int(dictionary[pos])+ int(shift))%26
+            numero= numero - 1
+            encrypted_message=  letterlist[numero] + encrypted_message
+                
+    return(str(encrypted_message))
+
+caesar_cipher('HI', 27) 
 
 def shift_by_letter(letter, letter_shift):
     '''Shift By Letter.
@@ -89,7 +145,32 @@ def shift_by_letter(letter, letter_shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    def shift_by_letter(letter, letter_shift):
+
+    dictionary = {' ':'-5','A':'1','B':'2','C':'3','D':'4','E':'5','F':'6','G':'7','H':'8','I':'9','J':'10','K':'11','L':'12','M':'13','N':'14','O':'15','P':'16','Q':'17','R':'18','X':'19','T':'20','U':'21','V':'22','W':'23','X':'24','Y':'25','Z':'26'}
+    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
+    space = dictionary[letter]
+    space2= dictionary[letter_shift]
+    
+    if int(space)<0 or int(space2) <0:
+        print(' ')
+    elif int(dictionary[letter])+ int(dictionary[letter_shift]) <= 26:
+        
+        numero = dictionary[letter]
+        numero2 = dictionary[letter_shift]
+        shifted= int(numero) + int(numero2)
+        shifted = shifted - 2
+        int(shifted)
+        print(letterlist[shifted])
+    elif int(dictionary[letter])+ int(dictionary[letter_shift]) > 26:
+        
+        number = (int(dictionary[letter])+ int(dictionary[letter_shift]))%26
+        number= number - 2
+        
+        return(str(letterlist[number]))
+
+
+shift_by_letter('B', 'K')
 
 def vigenere_cipher(message, key):
     '''Vigenere Cipher.
@@ -122,7 +203,48 @@ def vigenere_cipher(message, key):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    pass
+    dictionary = {' ':'-5','A':'1','B':'2','C':'3','D':'4','E':'5','F':'6','G':'7','H':'8','I':'9','J':'10','K':'11','L':'12','M':'13','N':'14','O':'15','P':'16','Q':'17','R':'18','X':'19','T':'20','U':'21','V':'22','W':'23','X':'24','Y':'25','Z':'26'}
+    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
+    ciphermessage = ""
+    
+    length = int(len(message))
+    length2 = int(len(key))
+    multiply = (length/length2)//1
+    remainder = length%length2
+    newkey = key*int(multiply)
+    x= remainder
+    y=0
+    while x>0:
+        x-= 1
+        newkey+= key[y]
+        y+=1
+
+    x=0
+    length = int(len(message))
+    while length> 0:
+        
+        length -= 1
+        pos= message[length]
+        number = dictionary[pos]
+        position2 = newkey[length]
+        number2 = dictionary[position2]
+                
+        if int(number)<0:
+            ciphermessage= " "
+
+        elif int(dictionary[pos]) + int(dictionary[position2])<=26:
+            shift= int(dictionary[position2])
+            shifted= int(number) + int(shift)
+            shifted = shifted - 2
+            int(shifted)
+            ciphermessage=  letterlist[shifted] + ciphermessage
+        else:
+            numero = (int(dictionary[pos])+ int(dictionary[position2]))%26
+            numero= numero - 2
+            ciphermessage=  letterlist[numero] + ciphermessage
+    return(str(ciphermessage))
+
+vigenere_cipher('BBBBBBBBB','ABAZ')
 
 def scytale_cipher(message, shift):
     '''Scytale Cipher.
