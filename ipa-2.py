@@ -37,24 +37,25 @@ def shift_letter(letter, shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    dictionary = {' ':'-5','A':'1','B':'2','C':'3','D':'4','E':'5','F':'6','G':'7','H':'8','I':'9','J':'10','K':'11','L':'12','M':'13','N':'14','O':'15','P':'16','Q':'17','R':'18','X':'19','T':'20','U':'21','V':'22','W':'23','X':'24','Y':'25','Z':'26'}
+    dictionary = {' ':'-5','A':'0','B':'1','C':'2','D':'3','E':'4','F':'5','G':'6','H':'7','I':'8','J':'9','K':'10','L':'11','M':'12','N':'13','O':'14','P':'15','Q':'16','R':'17','X':'18','T':'19','U':'20','V':'21','W':'22','X':'23','Y':'24','Z':'25'}
     letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
-    space = dictionary[letter]
-    if int(space)<0:
-        print(' ')
-    elif int(dictionary[letter])+ int(shift) <= 26:
-        
-        numero = dictionary[letter]
-        int(shift)
-        shifted= int(numero) + shift
-        shifted = shifted - 1
-        int(shifted)
-        print(letterlist[shifted])
-    elif int(dictionary[letter])+ int(shift) > 26:
-        
-        number = (int(dictionary[letter])+ int(shift))%26
-        number= number - 1
-        return(str(letterlist[number]))
+    decodedmessage= ""
+    
+    
+    hey=int(dictionary[letter])
+    
+    if letter== " ":
+        return(letter)
+    
+    elif hey+shift <= 25:
+    
+        numanswer= hey +shift
+        answer= letterlist[numanswer]
+        return(answer)
+    else:
+        big=(hey+shift)%26
+        answer=letterlist[big]
+        return(answer)
 
 
     
@@ -79,33 +80,29 @@ def caesar_cipher(message, shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    dictionary = {' ':'-5','A':'1','B':'2','C':'3','D':'4','E':'5','F':'6','G':'7','H':'8','I':'9','J':'10','K':'11','L':'12','M':'13','N':'14','O':'15','P':'16','Q':'17','R':'18','X':'19','T':'20','U':'21','V':'22','W':'23','X':'24','Y':'25','Z':'26'}
-    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
-    encrypted_message= ""
     
-    length = int(len(message))
+    dictionary = {' ':'-5','A':'0','B':'1','C':'2','D':'3','E':'4','F':'5','G':'6','H':'7','I':'8','J':'9','K':'10','L':'11','M':'12','N':'13','O':'14','P':'15','Q':'16','R':'17','X':'18','T':'19','U':'20','V':'21','W':'22','X':'23','Y':'24','Z':'25'}
+    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
+    finalmessage= ""
+    
 
-    while length> 0:
-        length -= 1
-        pos= message[length]
-        number = dictionary[pos]
-        
-        space = dictionary[pos]
-        if int(space)<0:
-            encrypted_message=  " " + encrypted_message
+    
+    for char in message:
+        hey=int(dictionary[char])
+        if char== " ":
+            finalmessage= finalmessage + " "
 
-        elif int(dictionary[pos]) + int(shift) <= 26:
-            int(shift)
-            shifted= int(number) + shift
-            shifted = shifted - 1
-            int(shifted)
-            encrypted_message=  letterlist[shifted] + encrypted_message
+        elif hey+shift <= 25:
+
+            numanswer= hey +shift
+            answer= letterlist[numanswer]
+
+            finalmessage= finalmessage + answer
         else:
-            numero = (int(dictionary[pos])+ int(shift))%26
-            numero= numero - 1
-            encrypted_message=  letterlist[numero] + encrypted_message
-                
-    return(str(encrypted_message))
+            big=(hey+shift)%26
+            answer=letterlist[big]
+            finalmessage= finalmessage + answer
+    return(finalmessage)
 
 
 def shift_by_letter(letter, letter_shift):
@@ -136,27 +133,28 @@ def shift_by_letter(letter, letter_shift):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    dictionary = {' ':'-5','A':'1','B':'2','C':'3','D':'4','E':'5','F':'6','G':'7','H':'8','I':'9','J':'10','K':'11','L':'12','M':'13','N':'14','O':'15','P':'16','Q':'17','R':'18','X':'19','T':'20','U':'21','V':'22','W':'23','X':'24','Y':'25','Z':'26'}
-    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
-    space = dictionary[letter]
-    space2= dictionary[letter_shift]
     
-    if int(space)<0 or int(space2) <0:
-        print(' ')
-    elif int(dictionary[letter])+ int(dictionary[letter_shift]) <= 26:
-        
-        numero = dictionary[letter]
-        numero2 = dictionary[letter_shift]
-        shifted= int(numero) + int(numero2)
-        shifted = shifted - 2
-        int(shifted)
-        print(letterlist[shifted])
-    elif int(dictionary[letter])+ int(dictionary[letter_shift]) > 26:
-        
-        number = (int(dictionary[letter])+ int(dictionary[letter_shift]))%26
-        number= number - 2
-        
-    return(str(letterlist[number]))
+    dictionary = {' ':'-5','A':'0','B':'1','C':'2','D':'3','E':'4','F':'5','G':'6','H':'7','I':'8','J':'9','K':'10','L':'11','M':'12','N':'13','O':'14','P':'15','Q':'16','R':'17','X':'18','T':'19','U':'20','V':'21','W':'22','X':'23','Y':'24','Z':'25'}
+    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
+    finalmessage= ""
+    shift= int(dictionary[letter_shift])
+    
+    for char in letter:
+        hey=int(dictionary[char])
+        if char== " ":
+            finalmessage= finalmessage + " "
+
+        elif hey+shift <= 25:
+
+            numanswer= hey +shift
+            answer= letterlist[numanswer]
+
+            finalmessage= finalmessage + answer
+        else:
+            big=(hey+shift)%26
+            answer=letterlist[big]
+            finalmessage= finalmessage + answer
+    return(finalmessage)
 
 
 
@@ -191,46 +189,45 @@ def vigenere_cipher(message, key):
     '''
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
-    dictionary = {' ':'-5','A':'1','B':'2','C':'3','D':'4','E':'5','F':'6','G':'7','H':'8','I':'9','J':'10','K':'11','L':'12','M':'13','N':'14','O':'15','P':'16','Q':'17','R':'18','X':'19','T':'20','U':'21','V':'22','W':'23','X':'24','Y':'25','Z':'26'}
+    
+    dictionary = {'A':'0','B':'1','C':'2','D':'3','E':'4','F':'5','G':'6','H':'7','I':'8','J':'9','K':'10','L':'11','M':'12','N':'13','O':'14','P':'15','Q':'16','R':'17','X':'18','T':'19','U':'20','V':'21','W':'22','X':'23','Y':'24','Z':'25'}
     letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
-    ciphermessage = ""
+    finalmessage= ""
     
     length = int(len(message))
     length2 = int(len(key))
     multiply = (length/length2)//1
     remainder = length%length2
+    
     newkey = key*int(multiply)
-    x= remainder
-    y=0
-    while x>0:
-        x-= 1
-        newkey+= key[y]
-        y+=1
+    
+    while remainder>0:
+        b=0
+        newkey= newkey+ key[b]
+        remainder-=1
+        b+=1
 
-    x=0
-    length = int(len(message))
-    while length> 0:
-        
-        length -= 1
-        pos= message[length]
-        number = dictionary[pos]
-        position2 = newkey[length]
-        number2 = dictionary[position2]
-                
-        if int(number)<0:
-            ciphermessage= " "
+            
+    for char in range(length):
+        positions = message[char]
 
-        elif int(dictionary[pos]) + int(dictionary[position2])<=26:
-            shift= int(dictionary[position2])
-            shifted= int(number) + int(shift)
-            shifted = shifted - 2
-            int(shifted)
-            ciphermessage=  letterlist[shifted] + ciphermessage
+        if positions == " ":
+            finalmessage= finalmessage + " "
+
         else:
-            numero = (int(dictionary[pos])+ int(dictionary[position2]))%26
-            numero= numero - 2
-            ciphermessage=  letterlist[numero] + ciphermessage
-    return(str(ciphermessage))
+            
+            messagekey= int(dictionary[positions])
+            key2=newkey[char]
+            key3 = int(dictionary[key2])
+            
+            big = (messagekey+key3)%26
+            answer= letterlist[big]
+            
+            
+            finalmessage= finalmessage + answer
+            
+    return(finalmessage)
+
 
 
 
