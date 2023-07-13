@@ -81,28 +81,25 @@ def caesar_cipher(message, shift):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     
-    dictionary = {' ':'-5','A':'0','B':'1','C':'2','D':'3','E':'4','F':'5','G':'6','H':'7','I':'8','J':'9','K':'10','L':'11','M':'12','N':'13','O':'14','P':'15','Q':'16','R':'17','X':'18','T':'19','U':'20','V':'21','W':'22','X':'23','Y':'24','Z':'25'}
-    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
-    finalmessage= ""
-    
-
-    
+    dictionary = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9, 'K': 10, 'L': 11, 'M': 12,
+                  'N': 13, 'O': 14, 'P': 15, 'Q': 16, 'R': 17, 'S': 18, 'T': 19, 'U': 20, 'V': 21, 'W': 22, 'X': 23,
+                  'Y': 24, 'Z': 25}
+    final_message = ""
     for char in message:
-        hey=int(dictionary[char])
-        if char== " ":
-            finalmessage= finalmessage + " "
-
-        elif hey+shift <= 25:
-
-            numanswer= hey +shift
-            answer= letterlist[numanswer]
-
-            finalmessage= finalmessage + answer
+        if char == " ":
+            final_message += " "
         else:
-            big=(hey+shift)%26
-            answer=letterlist[big]
-            finalmessage= finalmessage + answer
-    return(finalmessage)
+            key2 = dictionary[char]
+
+            number = (key2 + shift) % 26
+            letter = None
+            for char, num in dictionary.items():
+                if num == number:
+                    letter = char
+                    break
+            final_message += letter
+
+    return final_message
 
 
 def shift_by_letter(letter, letter_shift):
