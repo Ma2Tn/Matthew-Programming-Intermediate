@@ -190,43 +190,35 @@ def vigenere_cipher(message, key):
     # Replace `pass` with your code.
     # Stay within the function. Only use the parameters as input. The function should return your answer.
     
-    dictionary = {'A':'0','B':'1','C':'2','D':'3','E':'4','F':'5','G':'6','H':'7','I':'8','J':'9','K':'10','L':'11','M':'12','N':'13','O':'14','P':'15','Q':'16','R':'17','X':'18','T':'19','U':'20','V':'21','W':'22','X':'23','Y':'24','Z':'25'}
-    letterlist = "ABCDEFGHIJKLMNOPQRXTUVWXYZ"
-    finalmessage= ""
-    
-    length = int(len(message))
-    length2 = int(len(key))
-    multiply = (length/length2)//1
-    remainder = length%length2
-    
-    newkey = key*int(multiply)
-    
-    while remainder>0:
-        b=0
-        newkey= newkey+ key[b]
-        remainder-=1
-        b+=1
+    dictionary = {'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4, 'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9, 'K': 10, 'L': 11, 'M': 12,'N': 13, 'O': 14, 'P': 15, 'Q': 16, 'R': 17, 'S': 18, 'T': 19, 'U': 20, 'V': 21, 'W': 22, 'X': 23,'Y': 24, 'Z': 25}
 
-            
-    for char in range(length):
-        positions = message[char]
+    final_message = ""
+    message = message.upper()
+    key = key.upper()
 
-        if positions == " ":
-            finalmessage= finalmessage + " "
+    length = len(message)
+    length2 = len(key)
+    multiply = length // length2
+    remainder = length % length2
 
+    new_key = key * multiply + key[:remainder]
+
+    for i in range(length):
+        pos = message[i]
+        if pos == " ":
+            final_message += " "
         else:
-            
-            messagekey= int(dictionary[positions])
-            key2=newkey[char]
-            key3 = int(dictionary[key2])
-            
-            big = (messagekey+key3)%26
-            answer= letterlist[big]
-            
-            
-            finalmessage= finalmessage + answer
-            
-    return(finalmessage)
+            key_me = dictionary[pos]
+            key_you = dictionary[new_key[i]]
+            number = (key_me + key_you) % 26
+            letter = None
+            for char, num in dictionary.items():
+                if num == number:
+                    letter = char
+                    break
+            final_message += letter
+
+    return final_message
 
 
 
